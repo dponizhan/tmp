@@ -1,0 +1,20 @@
+<DataSource
+	ID="skinVariableGroups"
+    serverType="custom"
+    dataFormat="json"
+    dataURL="/tools/skinTools/data/groupMetadata.json"
+    quoteColumnNames="true"
+>
+  <fields>
+	<field name="name" title="Name" type="text" primaryKey="true" required="true" />
+	<field name="parentId" type="text" title="Parent"
+        foreignKey="skinVariableGroups.name" rootValue="none"
+    />
+	<field name="index" type="integer" title="Index" />
+	<field name="title" title="Title" />
+	<field name="comment" title="Comment" />
+	<field name="internal" title="Internal" type="boolean" />
+	<field name="iscClass" title="Class" />
+  </fields>
+</DataSource>
+

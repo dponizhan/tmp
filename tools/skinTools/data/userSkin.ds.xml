@@ -1,0 +1,105 @@
+<DataSource ID="userSkin" serverType="sql" tableCharacterSet="utf8mb4" tableCollation="utf8mb4_general_ci">
+    <fields>
+        <field name="pk" type="sequence" primaryKey="true"/>
+        <field name="name" required="true" />
+        <field name="baseSkin" required="true" foreignKey="baseSkin.name"/>
+        <field name="userSettings" length="10mb" detail="true"/>
+        <field name="skinStylesCSS" length="10mb" detail="true"/>
+        <!-- <field name="thumbnail" type="image" title="Thumbnail"/> -->
+        <field name="thumbnail" length="10mb" title="Thumbnail"/>
+
+<!--
+        <field name="title" customSelectExpression="name" hidden="true" canSave="false" />
+-->
+        <!--
+        <field name="enableCaching" type="boolean"/>
+        -->
+        <field name="created_by" type="creator"></field>
+        <field name="created_at" type="creatorTimestamp"></field>
+        <field name="modified_by" type="modifier"></field>
+        <field name="modified_at" type="modifierTimestamp"></field>
+    </fields>
+    <operationBindings>
+        <operationBinding operationType="fetch"><script language="groovy">
+            import com.isomorphic.util.SkinUtil;
+            import com.isomorphic.util.SkinUtil.SkinType;
+
+
+            // for a specific theme request, include userSettings since they too need to come from disk
+            if (criteria.name != null) {
+                if (SkinUtil.assertValidTheme(criteria.name, SkinType.USER_ON_FILESYSTEM)) {
+                    [
+                        pk: -1,
+                        name: criteria.name,
+                        baseSkin: criteria.name,
+                        userSettings: SkinUtil.getUserSettings(criteria.name),
+                        thumbnail: "[ISOMORPHIC]skins/" + criteria.name + "/images/thumbnail.png"
+                    ];
+                } else {
+                    dsRequest.execute();
+                }
+            } else {
+                // fetch from ds and combine with on-disk records
+                dsRequest.execute().getRecords() + SkinUtil.getThemes(SkinType.USER_ON_FILESYSTEM).collect{
+                    [
+                        pk: -1,
+                        name: it,
+                        // a user imported skin is its own base since we have no real way of 
+                        // knowing which skin it was originally based off of - may in fact be a 
+                        // completely custom skin, just user created
+                        baseSkin: it,
+                        thumbnail: "[ISOMORPHIC]skins/" + it + "/images/thumbnail.png"
+                    ];
+                }
+            }
+        </script></operationBinding>
+        <operationBinding operationType="update"><script language="groovy">
+            import com.isomorphic.util.SkinUtil;
+            import com.isomorphic.util.SkinUtil.SkinType;
+
+
+            if (SkinUtil.assertValidTheme(values.name, SkinType.BASE)) 
+                throw new Exception("A base theme called '"+values.name+"' already exists - please choose a different name");
+            
+            if (SkinUtil.assertValidTheme(values.name, SkinType.USER_ON_FILESYSTEM)) {
+                // editing on disk
+                SkinUtil.saveUserSettings(values.name, values.userSettings);
+                // rebuild so immediately usable by other apps
+                SkinUtil.compileTheme(values.name);
+                // datasource protocol: return record as saved
+                values;  
+            } else {
+                // save to datasource
+                values.skinStylesCSS = SkinUtil.compileTheme(values.name, values.baseSkin, values.userSettings);
+                dsRequest.execute();
+            }
+        </script></operationBinding>
+        <operationBinding operationType="add"><script language="groovy">
+            import com.isomorphic.util.SkinUtil;
+            import com.isomorphic.util.SkinUtil.SkinType;
+
+            if (SkinUtil.assertValidTheme(values.name, SkinType.BASE)) 
+                throw new Exception("A base theme called '"+values.name+"' already exists - please choose a different name");
+
+            if (SkinUtil.assertValidTheme(values.name, SkinType.USER_ON_FILESYSTEM)) 
+                throw new Exception("A custom (exported or hand-created) theme called '"+values.name+"' already exists - please choose a different name");
+
+            // get the baseSkin's CSS content
+            values.skinStylesCSS = SkinUtil.getSkinStylesCSS(values.baseSkin);
+
+            dsRequest.execute();
+        </script></operationBinding>
+        <operationBinding operationId="updatePreview" operationType="custom">
+            <serverObject lookupStyle="new" className="com.isomorphic.util.SkinUtil" methodName="updatePreview" />
+        </operationBinding>
+        <operationBinding operationId="export" operationType="custom">
+            <serverObject lookupStyle="new" className="com.isomorphic.util.SkinUtil" methodName="export" />
+        </operationBinding>
+        <operationBinding operationId="updateVariableMetadata" operationType="custom" >
+            <serverObject lookupStyle="new" className="com.isomorphic.util.SkinUtil" methodName="updateVariableMetadata" />
+        </operationBinding>
+        <operationBinding operationId="updateVariableGroupMetadata" operationType="custom" >
+            <serverObject lookupStyle="new" className="com.isomorphic.util.SkinUtil" methodName="updateVariableGroupMetadata" />
+        </operationBinding>
+    </operationBindings>
+</DataSource>

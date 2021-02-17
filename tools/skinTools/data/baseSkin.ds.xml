@@ -1,0 +1,42 @@
+<DataSource ID="baseSkin" serverType="custom">
+    <fields>
+        <field name="name" primaryKey="true"/>
+        <field name="skinConfig" length="10000000" detail="true"/>
+        <field name="skinSettings" length="10000000" detail="true"/>
+        <field name="cssProperties" length="10000000" detail="true"/>
+        <field name="thumbnail" type="image" title="Thumbnail"/>
+        <field name="sortIndex" type="custom"/>
+        <field name="skinStylesCSS" length="10mb" detail="true"/>
+    </fields>
+    <operationBindings>
+        <operationBinding operationType="fetch"><script language="groovy">
+            import com.isomorphic.util.SkinUtil;
+            import com.isomorphic.util.SkinUtil.SkinType;
+
+            if (criteria.name != null) {
+                // fetch for a specific theme: return the skinSettings as part of response
+                // note that we look for ALL types here because an on-disk imorted theme serves 
+                // as its own baseSkin and we need to be able to load its skinSettings
+                SkinUtil.getThemes(SkinType.ON_FILESYSTEM).findAll{it == criteria.name}.collect{
+                    [
+                        name: it,
+                        skinSettings: SkinUtil.getSkinSettings(it),
+                        // this is a json file with metadata for complex transforms in this skin 
+                        skinConfig: SkinUtil.getSkinConfig(it),
+                        cssProperties: SkinUtil.getSkinCssProperties(it),
+                        thumbnail: "[ISOMORPHIC]skins/" + it + "/images/thumbnail.png",
+                        skinStylesCSS: SkinUtil.getSkinStylesCSS(it)
+                    ]
+                };
+            } else {
+                // fetch for all base skins: return names and other basic info only
+                SkinUtil.getThemes(SkinType.BASE).collect{
+                    [
+                        name: it,
+                        thumbnail: "[ISOMORPHIC]skins/" + it + "/images/thumbnail.png"
+                    ]
+                };
+            }
+        </script></operationBinding>
+    </operationBindings>
+</DataSource>

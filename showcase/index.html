@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/> 
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link rel="apple-touch-icon" href="exampleImages/cubes.png">
+<title>SmartClient&trade; v12.1p_2021-02-17 Showcase</title>
+<style>
+.popupPolicies {
+    width: 280px;
+    height: 170px;
+    border-radius: 10px;
+    background-color: black;
+    box-shadow: 1px 1px 7px black;
+    position: fixed;
+    bottom: 90px;
+    left: 15px;
+    z-index:999999;
+    color: #D6D5D5;
+    line-height: 20px;
+    font-family: "Lucida Sans Unicode","Lucida Grande","Trebuchet MS",Helvetica,Arial,sans-serif;
+    font-size: 10px;
+    padding: 25px;
+    visibility: hidden;
+}
+.popupPolicies a:hover, 
+.popupPolicies a:visited, 
+.popupPolicies a:link, 
+.popupPolicies a:active {
+    text-decoration: none;
+    font-weight: bold;
+}
+.iAgreeButton {
+    top: 17px;right: 2px;
+    background: #D6D5D5;
+    text-align: center;
+    padding-top: 8px;
+    font-size: 11px;
+    font-weight: bold;
+    width: 80px; height: 27px;
+    color: black;
+    position: relative;
+    float: right;
+}
+</style>       
+
+<!--CSS for loading message at application start-->
+<style type="text/css">
+    html, body { overflow:hidden }
+    #loadingWrapper {
+        position: absolute;
+        top: 40%;
+        width: 100%;
+        text-align: center;
+        z-index: 900001;
+    }
+    #loading {
+        margin: 0 auto;
+        border: 1px solid #ccc;
+        width: 145px;
+        padding: 2px;
+        text-align: left;
+    }
+    #loading a {
+        color: #225588;
+    }
+    #loading .loadingIndicator {
+        background: white;
+        font: bold 13px tahoma, arial, helvetica;
+        padding: 10px;
+        margin: 0;
+        height: auto;
+        color: #444;
+    }
+     #loadingMsg {
+        font: normal 10px arial, tahoma, sans-serif;
+        padding: 6px 0px 0px 0px;
+        line-height: 8px;
+        clear: left;
+    }
+</style>
+</head>
+<body STYLE="overflow:hidden" role="application">
+
+<!--add loading indicator while the app is being loaded-->
+<div id="loadingWrapper">
+<div id="loading">
+    <div class="loadingIndicator">
+        <img src="../isomorphic/system/reference/skin/images/loading.gif" width="32" height="32"
+             style="margin-right:8px;float:left;vertical-align:top;"/>
+        <div id="scProductName">SmartClient Showcase</div>
+        <div id="loadingMsg">Loading app styles...</div>
+    </div>
+</div>
+</div>
+
+<script>
+window.isomorphicDir='../isomorphic/';
+
+</script>
+
+<LINK REL="stylesheet" TYPE="text/css" HREF="../isomorphic/system/reference/skin/shell_styles.css?isc_version=v12.1p_2021-02-17.css">
+<LINK REL="stylesheet" TYPE="text/css" HREF="../isomorphic/system/reference/sourceColorizer.css?isc_version=v12.1p_2021-02-17.css">
+
+<SCRIPT>var isc_maxCSSLoaders=200</SCRIPT>
+
+<!-- load ISC -->
+<SCRIPT>document.getElementById('loadingMsg').innerHTML = 'Loading Core API...';</SCRIPT>
+<SCRIPT SRC="../isomorphic/system/modules/ISC_History.js?isc_version=v12.1p_2021-02-17.js"></SCRIPT>
+<SCRIPT>
+isc.History.pushStateMode = "queryParam";
+isc.History.pushStateQueryParamName = "id";
+if (isc.History.usePushState) {
+    // backcompat redirects
+    var anchorIndex = location.href.indexOf("#");
+    if (anchorIndex != -1) {
+        // synthesize ?id=... query param if hash non-empty
+        var historyId = location.href.substring(anchorIndex + 1);
+        var newLocation = historyId == "" ? "./" : "./?id=" + historyId;
+        // if query params already present, drop any id and keep the rest
+        var queryStartIndex = location.href.indexOf("?");
+        if (queryStartIndex != -1) {
+            var queryString = location.href.substring(queryStartIndex);
+            queryString = queryString.substring(0, queryString.indexOf("#")).
+                                      replace(/(\?|\&)id\=[^&]+/, "");
+            // nothing to do if ?id=... was only query param; otherwise add them back
+            if (queryString != "") {
+                newLocation += (historyId == "" ? "?" : "&") + queryString.substring(1);
+            }
+        }
+        location.replace(newLocation);
+    }
+    // ensure there's state for the current history entry
+    if (window.history.state == null) {
+        var idMatch = location.href.match(/(\?|&)id=(.*?)(&|$)/),
+        initialId = idMatch ? decodeURIComponent(idMatch[2]) : null;
+        window.history.replaceState({historyId: initialId}, '');
+    }
+}
+</SCRIPT>
+<SCRIPT SRC="../isomorphic/system/development/ISC_FileLoader.js?isc_version=v12.1p_2021-02-17.js"></SCRIPT>
+<SCRIPT SRC="../isomorphic/system/modules/ISC_Core.js?isc_version=v12.1p_2021-02-17.js"></SCRIPT>
+
+<SCRIPT>document.getElementById('loadingMsg').innerHTML = 'Loading UI Components...';</SCRIPT>
+<SCRIPT SRC="../isomorphic/system/modules/ISC_Foundation.js?isc_version=v12.1p_2021-02-17.js"></SCRIPT>
+<SCRIPT SRC="../isomorphic/system/modules/ISC_Containers.js?isc_version=v12.1p_2021-02-17.js"></SCRIPT>
+<SCRIPT SRC="../isomorphic/system/modules/ISC_Grids.js?isc_version=v12.1p_2021-02-17.js"></SCRIPT>
+<SCRIPT SRC="../isomorphic/system/modules/ISC_Forms.js?isc_version=v12.1p_2021-02-17.js"></SCRIPT>
+<SCRIPT SRC="../isomorphic/system/modules/ISC_RichTextEditor.js?isc_version=v12.1p_2021-02-17.js"></SCRIPT>
+
+<SCRIPT>document.getElementById('loadingMsg').innerHTML = 'Loading Data API...';</SCRIPT>
+<SCRIPT SRC="../isomorphic/system/modules/ISC_DataBinding.js?isc_version=v12.1p_2021-02-17.js"></SCRIPT>
+
+<!--  -->
+<SCRIPT>document.getElementById('loadingMsg').innerHTML = 'Loading calendar UI...';</SCRIPT>
+<SCRIPT SRC="../isomorphic/system/modules/ISC_Calendar.js?isc_version=v12.1p_2021-02-17.js"></SCRIPT>
+<!-- //>PluginBridges -->
+<SCRIPT>document.getElementById('loadingMsg').innerHTML = 'Loading plugin support...';</SCRIPT>
+<SCRIPT SRC="../isomorphic/system/modules/ISC_PluginBridges.js?isc_version=v12.1p_2021-02-17.js"></SCRIPT>
+<!-- //<PluginBridges -->
+<SCRIPT>document.getElementById('loadingMsg').innerHTML = 'Loading drawing...';</SCRIPT>
+<SCRIPT SRC="../isomorphic/system/modules/ISC_Drawing.js?isc_version=v12.1p_2021-02-17.js"></SCRIPT>
+<!--  -->
+<!--  -->
+<SCRIPT>document.getElementById('loadingMsg').innerHTML = 'Loading app...';</SCRIPT>
+<SCRIPT SRC="../isomorphic/system/development/ISC_SyntaxHiliter.js?isc_version=v12.1p_2021-02-17.js"></SCRIPT>
+<SCRIPT SRC="../isomorphic/system/development/ISC_ExampleViewer.js?isc_version=v12.1p_2021-02-17.js"></SCRIPT>
+<!--  -->
+
+<script>
+// use the file loader to load the appropriate skin file.
+// then, incorporate locale into the feature explorer.
+isc.FileLoader.loadSkin(isc.params.skin || isc.Browser.defaultSkin);
+isc.FileLoader.loadLocale(isc.params.locale, "showExplorer()");
+</script>
+
+<script src="../isomorphic/system/reference/exampleTree.js?isc_version=v12.1p_2021-02-17.js"></script>
+<script>
+
+//isc.setScreenReaderMode(true);
+isc.Page.leaveScrollbarGap = false;
+
+function showExplorer () {
+    document.getElementById('loadingMsg').innerHTML = 'Starting app...';
+
+    
+    var fontIncrease = isc.getParams().fontIncrease;
+    if (fontIncrease == null) fontIncrease = isc.Browser.defaultFontIncrease;
+    fontIncrease = parseInt(fontIncrease);
+    isc.Canvas.resizeFonts(fontIncrease);
+    // this would change just the skin styles, and not ones specific to the Feature
+    // Explorer, such as description text
+    //isc.Canvas.resizeFonts(fontIncrease, "skin_styles.css");
+
+    var sizeIncrease = isc.getParams().sizeIncrease;
+    if (sizeIncrease == null) sizeIncrease = isc.Browser.defaultSizeIncrease;
+    sizeIncrease = parseInt(sizeIncrease); 
+    isc.Canvas.resizeControls(sizeIncrease);
+    
+    
+
+    if (window.location.protocol == "file:") {
+        isc.warn("The Feature Explorer requires the SmartClient server to be running. See the"
+                +"Quickstart section of the Release Notes for instructions on starting the server."
+                +"<br><br>You may also access these examples online at"
+                +" <a href='http://www.smartclient.com'>http://www.SmartClient.com</a>");
+    } else {
+        var skin = isc.currentSkin ? isc.currentSkin.name : null;
+        skin = skin || isc.params.skin;
+
+        isc.ExampleViewer.addProperties({
+            
+            currentSkin:skin,
+            currentFontIncrease:fontIncrease,
+            currentSizeIncrease:sizeIncrease
+        });
+        isc.FeatureExplorer.addProperties({
+            currentFontIncrease:fontIncrease,
+            currentSizeIncrease:sizeIncrease
+        });
+        var leaveMinimalUISpace = (isc.Browser._supportsMinimalUI && window.isc_useDefaultViewport != false && window.isc_useMinimalUI != false);
+        if (leaveMinimalUISpace) {
+            var minimalUISpacer = isc.Label.create({
+                ID: "minimalUISpacer",
+                width: "100%",
+                height: 20,
+                leavePageSpace: 0,
+                backgroundColor: "Black",
+                icon: "cubes.png",
+                iconWidth: 16,
+                iconHeight: 16,
+                contents: "<strong style='color: White; font-size: 15px;'>Isomorphic Software</strong>",
+                align: "center",
+                autoDraw: true,
+                ariaRole: "presentation",
+                ariaState: {
+                    hidden: "true"
+                }
+            });
+        }
+        var featureExplorer = isc.FeatureExplorer.create({
+            ID: "featureExplorer",
+            width: "100%",
+            height: "100%",
+            // Overall background color white except for the dark skins
+            backgroundColor: (skin == "BlackOps" || skin == "Obsidian" ? "black" : "white"),
+            treeData: exampleTree,
+            autoDraw: true
+        });
+    }
+}
+</script>
+
+<!-- Load the system schema for examples that require them -->
+<SCRIPT>document.getElementById('loadingMsg').innerHTML = 'Loading datasources...';</SCRIPT>
+<SCRIPT SRC="../isomorphic/system/modules/ISC_SystemSchema.js?isc_version=v12.1p_2021-02-17.js"></SCRIPT>
+
+<script type="text/javascript">
+    // update this value when policies to be updated.
+    var currentValuePPCCookie = "v1";
+    
+    function isValidPPCCookie() {
+        var name = "acceptPPC=",
+            value = "";
+        var decodedCookie = decodeURIComponent(document.cookie);
+        var ca = decodedCookie.split(';');
+        for(var i = 0; i <ca.length; i++) {
+            var c = ca[i].trim();
+            if (c.indexOf(name) == 0) {
+                value = c.substring(name.length, c.length);
+                break;
+            }
+        }
+        if (value == currentValuePPCCookie) return true;
+        else return false;
+    }
+    function acceptPrivacyPolicyAndCookies() {
+        var exdate = new Date();
+        exdate.setDate(exdate.getDate() + 365);
+        document.cookie = "acceptPPC="+currentValuePPCCookie+";path=/;expires="+exdate.toUTCString();
+        var item = document.getElementById("popupPPC");
+        item.style.visibility = 'hidden';
+    }
+</script> 
+<div class="popupPolicies" id="popupPPC">
+    <span style="font-size:20px;font-weight: bold;">Privacy Policy and Cookies</span>
+    <br><br>
+    By continuing to use our site, you agree to our Privacy Policy and our use of cookies 
+    to understand how you use our site, and to improve your experience. 
+    <a href="https://www.smartclient.com/policies/index.jsp" target="_blank" style="color:#0F6CA5;">Learn More.</a>
+    <br>
+    <a href="javascript:acceptPrivacyPolicyAndCookies();" style="color:black;" class="iAgreeButton">I Agree.</a>
+</div>
+<script type="text/javascript">
+    var websiteMode = (window.isc_websiteMode || isc.params.isc_websiteMode === "true") && !isc.Browser.isMobile;
+    if (!isValidPPCCookie() && websiteMode) {
+        var item = document.getElementById("popupPPC");
+        item.style.visibility = 'visible';
+    }
+</script> 
+
+<!-- Skin and styles are loaded asynchronously, so attribute waiting after this point to it -->
+<SCRIPT>document.getElementById('loadingMsg').innerHTML = 'Loading skin & styles...';</SCRIPT>
+
+</body>
+</html>

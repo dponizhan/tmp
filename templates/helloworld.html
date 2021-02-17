@@ -1,0 +1,191 @@
+<HTML>
+
+<HEAD>
+    <SCRIPT>var isomorphicDir = "../isomorphic/";</SCRIPT>
+    <SCRIPT SRC=../isomorphic/system/modules/ISC_Core.js></SCRIPT>
+    <SCRIPT SRC=../isomorphic/system/modules/ISC_Foundation.js></SCRIPT>
+    <SCRIPT SRC=../isomorphic/system/modules/ISC_Containers.js></SCRIPT>
+    <SCRIPT SRC=../isomorphic/system/modules/ISC_Grids.js></SCRIPT>
+    <SCRIPT SRC=../isomorphic/system/modules/ISC_Forms.js></SCRIPT>
+    <SCRIPT SRC=../isomorphic/system/modules/ISC_DataBinding.js></SCRIPT>
+    <SCRIPT SRC=../isomorphic/skins/Tahoe/load_skin.js></SCRIPT>
+</HEAD>
+
+<BODY>
+
+    <SCRIPT>
+
+        const teamData = [
+            {
+                TeamId: 1,
+                TeamName: "New Costing System"
+            },
+            {
+                TeamId: 2,
+                TeamName: "Warehousing Improvements"
+            },
+            {
+                TeamId: 3,
+                TeamName: "Evaluate AJAX Frameworks"
+            },
+            {
+                TeamId: 4,
+                TeamName: "Upgrade Postgres"
+            },
+            {
+                TeamId: 5,
+                TeamName: "Online Billing"
+            },
+        ];
+
+
+        const employeeData = [
+            {
+                EmployeeId: 1,
+                Name: "Charles Madigen",
+                Salary: 1000
+            },
+            {
+                EmployeeId: 2,
+                Name: "Bob Bob",
+                Salary: 2000
+            },
+            {
+                EmployeeId: 3,
+                Name: "Den Den",
+                Salary: 3000
+            },
+            {
+                EmployeeId: 4,
+                Name: "Sa Sa",
+                Salary: 4000
+            },
+            {
+                EmployeeId: 5,
+                Name: "Lorem Lorem",
+                Salary: 5000
+            },
+            {
+                EmployeeId: 6,
+                Name: "Ol Ol",
+                Salary: 6000
+            },
+            {
+                EmployeeId: 7,
+                Name: "Kir Kir",
+                Salary: 1000
+            },
+            {
+                EmployeeId: 8,
+                Name: "Pop Pop",
+                Salary: 7000
+            },
+            {
+                EmployeeId: 9,
+                Name: "Stan Stan",
+                Salary: 8000
+            },
+            {
+                EmployeeId: 10,
+                Name: "Ron Ron",
+                Salary: 1000
+            }
+        ];
+
+        const teamMembersData = [
+            {
+                TeamId: 1,
+                EmployeeId: 2,
+            },
+            {
+                TeamId: 1,
+                EmployeeId: 3,
+            },
+            {
+                TeamId: 2,
+                EmployeeId: 10,
+            },
+            {
+                TeamId: 1,
+                EmployeeId: 5,
+            },
+            {
+                TeamId: 2,
+                EmployeeId: 3,
+            },
+            {
+                TeamId: 1,
+                EmployeeId: 4,
+            },
+            {
+                TeamId: 3,
+                EmployeeId: 4,
+            },
+            {
+                TeamId: 5,
+                EmployeeId: 8,
+            },
+            {
+                TeamId: 5,
+                EmployeeId: 7,
+            },
+            {
+                TeamId: 5,
+                EmployeeId: 2,
+            }
+        ]
+
+        isc.DataSource.create({
+            ID: "teamDS",
+            fields: [
+                { name: "TeamId", title: "Team ID" },
+                { name: "TeamName", title: "Name" }
+            ],
+            clientOnly: true,
+            testData: teamData
+        });
+
+        isc.DataSource.create({
+            ID: "employeeDS",
+            fields: [
+                { name: "EmployeeId", title: "Employee ID" },
+                { name: "Name", title: "Employee Name" },
+                { name: "Salary", title: "Salary" }
+            ],
+            clientOnly: true,
+            testData: employeeData
+        });
+
+        isc.DataSource.create({
+            ID: "teamMembersDS",
+            fields: [
+                { name: "TeamId", foreignKey: "teamDS.TeamId" },
+                { name: "TeamName", includeFrom: "teamDS.TeamName" },
+                { name: "EmployeeId", foreignKey: "employeeDS.EmployeeId" },
+                { name: "EmployeeName", includeFrom: "employeeDS.Name" },
+                { name: "Salary", includeFrom: "employeeDS.Salary" }
+            ],
+            clientOnly: true,
+            testData: teamMembersData
+        });
+
+        isc.ListGrid.create({
+            ID: "teamMembersGrid",
+            width: 800,
+            height: 300,
+            sortField: "EmployeeId",
+            dataSource: "teamMembersDS",
+            autoFetchData: true,
+            fields: [
+                { name: "TeamId", title: "TID" },
+                { name: "TeamName", title: "Team Name" },
+                { name: "EmployeeId", title: "EID" },
+                { name: "EmployeeName", title: "Employee Name" },
+                { name: "Salary", title: "Salary" }
+            ],
+        });
+
+    </SCRIPT>
+</BODY>
+
+</HTML>

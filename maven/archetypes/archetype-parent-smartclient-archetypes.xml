@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.isomorphic.archetype</groupId>
+	<artifactId>archetype-parent-smartclient-archetypes</artifactId>
+	<version>12.1-p20210217</version>
+	<packaging>pom</packaging>
+
+	<build>
+
+		<extensions>
+			<extension>
+				<groupId>org.apache.maven.archetype</groupId>
+				<artifactId>archetype-packaging</artifactId>
+				<version>3.0.1</version>
+			</extension>
+		</extensions>
+
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<artifactId>maven-archetype-plugin</artifactId>
+					<version>3.0.1</version>
+					<extensions>true</extensions>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-remote-resources-plugin</artifactId>
+					<version>1.5</version>
+					<configuration>
+						<resourceBundles>
+							<resourceBundle>${project.groupId}:archetype-smartclient-archetype-resources:${project.version}</resourceBundle>
+						</resourceBundles>
+						<outputDirectory>${project.build.directory}/shared-resources</outputDirectory>
+						<attachToMain>false</attachToMain>
+                        <attachToMain>Test</attachToMain>						
+					</configuration>
+					<executions>
+						<execution>
+							<goals>
+								<goal>process</goal>
+							</goals>
+							<phase>generate-resources</phase>
+						</execution>
+					</executions>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+
+        <resources>
+            <resource>
+                <directory>${project.build.directory}/shared-resources</directory>
+            </resource>
+            <resource>
+                <directory>${basedir}/src/main/resources</directory>
+            </resource>
+        </resources>
+
+	</build>
+
+	<modules>
+        <module>archetype-smartclient-archetype-resources</module>   
+		<module>archetype-smartclient-quickstart</module>
+		<module>archetype-smartclient-quickstart-relogin</module>
+	</modules>
+
+</project>

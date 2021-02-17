@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://localhost:8080/" />
+<title>cascadingSelection-1.rctest</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">dynamicFreeze-hideField.rctest</td></tr>
+</thead><tbody>
+<tr>
+	<td>exampleOpen</td>
+	<td>smartgwt</td>
+	<td>controls_category_notifications</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=DynamicForm||index=0||length=2||classIndex=0||classLength=1]/item[name=text||title=Message||value=Download%20complete||index=1||Class=TextItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=DynamicForm||index=0||length=2||classIndex=0||classLength=1]/item[name=text||title=Message||value=Download%20complete||index=1||Class=TextItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=DynamicForm||index=0||length=2||classIndex=0||classLength=1]/item[name=text||title=Message||value=Testing%20one%20two%20three||index=1||Class=TextItem]/element</td>
+	<td>Testing one two three</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=DynamicForm||index=0||length=2||classIndex=0||classLength=1]/item[name=location||title=Screen%20Location||value=T||index=2||Class=ComboBoxItem]/[icon=&quot;picker&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=DynamicForm||index=0||length=2||classIndex=0||classLength=1]/item[name=location||title=Screen%20Location||value=T||index=2||Class=ComboBoxItem]/[icon=&quot;picker&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=DynamicForm||index=0||length=2||classIndex=0||classLength=1]/item[name=location||title=Screen%20Location||value=T||index=2||Class=ComboBoxItem]/pickList/body/row[location=L||0]/col[fieldName=location||0]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=DynamicForm||index=0||length=2||classIndex=0||classLength=1]/item[name=location||title=Screen%20Location||value=T||index=2||Class=ComboBoxItem]/pickList/body/row[location=L||0]/col[fieldName=location||0]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=Button||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||title=Send||scRole=button]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=Button||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||title=Send||scRole=button]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForCanvasDone</td>
+	<td>scLocator=//autoID[Class=NotifyLabel||index=7||length=8||classIndex=0||classLength=1||roleIndex=0||roleLength=1||title=Testing%20one%20two%20three||scRole=label]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>scLocator=//autoID[Class=NotifyLabel||index=7||length=8||classIndex=0||classLength=1||roleIndex=0||roleLength=1||title=Testing%20one%20two%20three||scRole=label]/</td>
+	<td>Testing one two three</td>
+</tr>
+<tr>
+	<td>verifyElementPositionLeft</td>
+	<td>scLocator=//autoID[Class=NotifyLabel||index=7||length=8||classIndex=0||classLength=1||roleIndex=0||roleLength=1||title=Testing%20one%20two%20three||scRole=label]/</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertEval</td>
+	<td>var canvas = window.isc.AutoTest.getObject(&quot;scLocator=//autoID[Class=NotifyLabel||index=7||length=8||classIndex=0||classLength=1||roleIndex=0||roleLength=1||title=Testing%20one%20two%20three||scRole=label]/&quot;); Math.ceil(window.isc.Page.getHeight()/2 - canvas.getPageTop() - canvas.getVisibleHeight()/2) &lt; 100</td>
+	<td>true</td>
+</tr>
+<tr>
+	<td>waitForElementNotPresent</td>
+	<td>scLocator=//autoID[Class=NotifyLabel||index=7||length=8||classIndex=0||classLength=1||roleIndex=0||roleLength=1||title=Testing%20one%20two%20three||scRole=label]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=DynamicForm||index=0||length=2||classIndex=0||classLength=1]/item[name=location||title=Screen%20Location||value=L||index=2||Class=ComboBoxItem]/[icon=&quot;picker&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=DynamicForm||index=0||length=2||classIndex=0||classLength=1]/item[name=location||title=Screen%20Location||value=L||index=2||Class=ComboBoxItem]/[icon=&quot;picker&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=DynamicForm||index=0||length=2||classIndex=0||classLength=1]/item[name=location||title=Screen%20Location||value=L||index=2||Class=ComboBoxItem]/pickList/body/row[location=T||2]/col[fieldName=location||0]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=DynamicForm||index=0||length=2||classIndex=0||classLength=1]/item[name=location||title=Screen%20Location||value=L||index=2||Class=ComboBoxItem]/pickList/body/row[location=T||2]/col[fieldName=location||0]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=DynamicForm||index=0||length=2||classIndex=0||classLength=1]/item[name=text||title=Message||value=ABC||index=1||Class=TextItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=DynamicForm||index=0||length=2||classIndex=0||classLength=1]/item[name=text||title=Message||value=ABC||index=1||Class=TextItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementReadyForKeyPresses</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=DynamicForm||index=0||length=2||classIndex=0||classLength=1]/item[name=text||title=Message||value=ABC||index=1||Class=TextItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=DynamicForm||index=0||length=2||classIndex=0||classLength=1]/item[name=text||title=Message||value=ABC||index=1||Class=TextItem]/element</td>
+	<td>ABC</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=DynamicForm||index=0||length=2||classIndex=0||classLength=1]/item[name=dismiss||title=Add%20button%20to%20immediately%20dismiss||index=5||Class=CheckboxItem]/valueicon</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=DynamicForm||index=0||length=2||classIndex=0||classLength=1]/item[name=dismiss||title=Add%20button%20to%20immediately%20dismiss||index=5||Class=CheckboxItem]/valueicon</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=Button||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||title=Send||scRole=button]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=Button||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||title=Send||scRole=button]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForCanvasDone</td>
+	<td>scLocator=//autoID[Class=NotifyLabel||index=8||length=9||classIndex=0||classLength=1||roleIndex=0||roleLength=1||title=ABC||scRole=label]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>scLocator=//autoID[Class=NotifyLabel||index=8||length=9||classIndex=0||classLength=1||roleIndex=0||roleLength=1||title=ABC||scRole=label]/</td>
+	<td>ABC</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//autoID[Class=NotifyLabel||index=8||length=9||classIndex=0||classLength=1||roleIndex=0||roleLength=1||title=ABC||scRole=label]/closeButton/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//autoID[Class=NotifyLabel||index=8||length=9||classIndex=0||classLength=1||roleIndex=0||roleLength=1||title=ABC||scRole=label]/closeButton/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=DynamicForm||index=0||length=2||classIndex=0||classLength=1]/item[name=window||title=Add%20link%20to%20launch%20a%20window||index=6||Class=CheckboxItem]/valueicon</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=DynamicForm||index=0||length=2||classIndex=0||classLength=1]/item[name=window||title=Add%20link%20to%20launch%20a%20window||index=6||Class=CheckboxItem]/valueicon</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=Button||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||title=Send||scRole=button]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=Button||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||title=Send||scRole=button]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForCanvasDone</td>
+	<td>scLocator=//autoID[Class=NotifyLabel||index=8||length=9||classIndex=0||classLength=1||roleIndex=0||roleLength=1||title=ABC%20Launch...%3C%24fs%24button%3E||scRole=label]/action</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//autoID[Class=NotifyLabel||index=8||length=9||classIndex=0||classLength=1||roleIndex=0||roleLength=1||title=ABC%20Launch...%3C%24fs%24button%3E||scRole=label]/action</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>scLocator=//autoID[Class=Window||index=10||length=11||classIndex=0||classLength=1||roleIndex=0||roleLength=1||title=Notification%20Action||scRole=dialog]/item[1][Class=&quot;Img&quot;]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//autoID[Class=NotifyLabel||index=8||length=11||classIndex=0||classLength=1||roleIndex=0||roleLength=1||title=ABC%20Launch...||scRole=label]/closeButton/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//autoID[Class=NotifyLabel||index=8||length=11||classIndex=0||classLength=1||roleIndex=0||roleLength=1||title=ABC%20Launch...||scRole=label]/closeButton/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementNotPresent</td>
+	<td>scLocator=//autoID[Class=NotifyLabel||index=8||length=11||classIndex=0||classLength=1||roleIndex=0||roleLength=1||title=ABC%20Launch...||scRole=label]/closeButton/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//autoID[Class=Window||index=10||length=11||classIndex=0||classLength=1||roleIndex=0||roleLength=1||title=Notification%20Action||scRole=dialog]/closeButton/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//autoID[Class=Window||index=10||length=11||classIndex=0||classLength=1||roleIndex=0||roleLength=1||title=Notification%20Action||scRole=dialog]/closeButton/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=Button||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||title=Send||scRole=button]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=Button||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||title=Send||scRole=button]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForCanvasDone</td>
+	<td>scLocator=//autoID[Class=NotifyLabel||index=8||length=11||classIndex=0||classLength=1||roleIndex=0||roleLength=1||title=ABC%20Launch...%3C%24fs%24button%3E||scRole=label]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>scLocator=//autoID[Class=NotifyLabel||index=8||length=11||classIndex=0||classLength=1||roleIndex=0||roleLength=1||title=ABC%20Launch...%3C%24fs%24button%3E||scRole=label]/</td>
+	<td>ABC Launch...</td>
+</tr>
+</tbody></table>
+</body>
+</html>

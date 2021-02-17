@@ -1,0 +1,34 @@
+<DataSource
+	ID="skinVariables"
+    dataFormat="json"
+    dataURL="/tools/skinTools/data/variableMetadata.json"
+>
+    <fields>
+        <field name="id" primaryKey="true" type="sequence" width="80" title="Id"></field>
+        <!-- <field name="json" length="100000000" type="jsonb"></field> -->
+        <field name="name" title="Name"></field>
+        <field name="title" title="Title"></field>
+        <!-- the key of another record in this DS -->
+        <field name="derivesFrom" title="Derives From"
+                foreignKey="skinVariables.name" rootValue="none"
+        />
+
+        <!-- :: separated transform elements - type::value - eg, saturate::10% -->
+        <field name="transform" title="Transform"></field>
+        <field name="category" type="text" title="Category"></field>
+        <field name="value" type="text" title="Value"></field>
+        <field name="defaultValue" type="text" title="Default Value"></field>
+        <field name="valueType" type="text" width="80" title="Value Type"></field>
+        <field name="valueSubType" type="text" width="80" title="Value Sub-type"></field>
+        <field name="exclude" type="boolean" title="Exclude"></field>
+        <field name="basic" type="integer" title="Basic"></field>
+        <!-- the index within the group and subgroup -->
+        <field name="outputIndex" type="integer" title="Group Index"></field>
+        <!-- the group to write the variable into in the Series and Theme files -->
+        <field name="outputGroup" type="text" title="Group" foreignKey="skinVariableGroups.name"
+            optionDataSource="skinVariableGroups" valueField="name" displayField="title">
+        </field>
+        <field name="iscClass" type="text" title="Class"></field>
+    </fields>  
+</DataSource>
+

@@ -1,0 +1,39 @@
+.testStyle {
+    background-color:#FA8072;
+    border: 1px solid #004D99;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    padding: 0px;
+}
+
+.testStyleHeader {
+    position: absolute;
+    left: 0px; 
+    right: 0px;
+    height: auto;
+    font-family:Verdana,Bitstream Vera Sans,sans-serif; font-size: 12px;
+    color: white;
+    background-color:#B22222;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    padding: 0px;
+}
+
+.testStyleBody {
+    position: absolute;
+    left: 0px; 
+    right: 0px;
+    bottom: 0px;
+    vertical-align: top;
+    font-family:Verdana,Bitstream Vera Sans,sans-serif; font-size: 11px;
+    color:black;
+    background-color: #FA8072;
+    padding: 3px;
+}
+
+.testStyleResizer {
+    border-top:1px solid white;
+    border-bottom: 1px solid white;
+}

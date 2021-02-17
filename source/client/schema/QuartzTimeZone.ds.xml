@@ -1,0 +1,20 @@
+isc.DataSource.create({
+    componentSchema:true,
+    isServerDS:true,
+    operationBindings:[
+        {
+            operationType:"fetch"
+        }
+    ],
+    allowAdvancedCriteria:true,
+    ID:"QuartzTimeZone",
+    fields:[
+        {
+            name:"ID",
+            type:"string",
+            validators:[
+            ],
+            primaryKey:true
+        }
+    ]
+})

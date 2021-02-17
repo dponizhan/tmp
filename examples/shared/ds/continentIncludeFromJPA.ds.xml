@@ -1,0 +1,8 @@
+<DataSource isSampleDS="true"
+    ID="continentIncludeFromJPA"
+    serverType="jpa"
+    schemaBean="com.isomorphic.examples.server.jpa.relations.ContinentManyToOneSimple"
+    autoDeriveSchema="true"
+>
+</DataSource>
+

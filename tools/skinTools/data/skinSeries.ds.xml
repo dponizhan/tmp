@@ -1,0 +1,42 @@
+<DataSource ID="skinSeries" serverType="custom">
+    <fields>
+        <field name="name" primaryKey="true"/>
+        <field name="baseCSS" length="10000000" detail="true"/>
+        <field name="dynamicCSS" length="10000000" detail="true"/>
+    </fields>
+    <operationBindings>
+        <operationBinding operationType="fetch"><script language="groovy">
+            import com.isomorphic.util.SkinUtil;
+
+            if (criteria.name != null) {
+                // fetch for a specific series - there's only one supported at the moment - Flat
+                SkinUtil.getSeriesList().findAll{it == criteria.name}.collect{
+                    [
+                        name: it,
+                        baseCSS: SkinUtil.getSeriesBaseFile(it),
+                        dynamicCSS: SkinUtil.getSeriesDynamicBaseFile(it)
+                    ]
+                };
+            } else {
+                // fetch all series (there's only Flat right now) - names only
+                SkinUtil.getSeriesList().collect{
+                    [
+                        name: it
+                    ]
+                };
+            }
+        </script></operationBinding>
+        <operationBinding operationType="update"><script language="groovy">
+            import com.isomorphic.util.SkinUtil;
+
+            if (criteria.name != null) {
+                if (values.baseCSS != null) {
+                    SkinUtil.saveSeriesBaseFile(criteria.name, values.baseCSS);
+                }
+                if (values.dynamicCSS != null) {
+                    SkinUtil.saveSeriesDynamicBaseFile(criteria.name, values.dynamicCSS);
+                }
+            }
+        </script></operationBinding>
+    </operationBindings>
+</DataSource>
