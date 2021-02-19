@@ -47,47 +47,47 @@
             },
             {
                 EmployeeId: 2,
-                Name: "Bob Bob",
+                Name: "Bob Dillan",
                 Salary: 2000
             },
             {
                 EmployeeId: 3,
-                Name: "Den Den",
+                Name: "Den Ponizhan",
                 Salary: 3000
             },
             {
                 EmployeeId: 4,
-                Name: "Sa Sa",
+                Name: "Sa Ckickos",
                 Salary: 4000
             },
             {
                 EmployeeId: 5,
-                Name: "Lorem Lorem",
+                Name: "Sergio Ramos",
                 Salary: 5000
             },
             {
                 EmployeeId: 6,
-                Name: "Ol Ol",
+                Name: "Olga Rutino",
                 Salary: 6000
             },
             {
                 EmployeeId: 7,
-                Name: "Kir Kir",
+                Name: "Kira Liliol",
                 Salary: 1000
             },
             {
                 EmployeeId: 8,
-                Name: "Pop Pop",
+                Name: "Anna Potman",
                 Salary: 7000
             },
             {
                 EmployeeId: 9,
-                Name: "Stan Stan",
+                Name: "Stan Kallen",
                 Salary: 8000
             },
             {
                 EmployeeId: 10,
-                Name: "Ron Ron",
+                Name: "Ron Bennon",
                 Salary: 1000
             }
         ];
@@ -138,8 +138,8 @@
         isc.DataSource.create({
             ID: "teamDS",
             fields: [
-                { name: "TeamId", title: "Team ID" },
-                { name: "TeamName", title: "Name" }
+                { name: "TeamId", title: "Team ID", primaryKey: true },
+                { name: "TeamName", title: "Name" },
             ],
             clientOnly: true,
             testData: teamData
@@ -148,9 +148,9 @@
         isc.DataSource.create({
             ID: "employeeDS",
             fields: [
-                { name: "EmployeeId", title: "Employee ID" },
+                { name: "EmployeeId", title: "Employee ID", primaryKey: true },
                 { name: "Name", title: "Employee Name" },
-                { name: "Salary", title: "Salary" }
+                { name: "Salary", title: "Salary" },
             ],
             clientOnly: true,
             testData: employeeData
@@ -163,7 +163,6 @@
                 { name: "TeamName", includeFrom: "teamDS.TeamName" },
                 { name: "EmployeeId", foreignKey: "employeeDS.EmployeeId" },
                 { name: "EmployeeName", includeFrom: "employeeDS.Name" },
-                { name: "Salary", includeFrom: "employeeDS.Salary" }
             ],
             clientOnly: true,
             testData: teamMembersData
@@ -172,17 +171,39 @@
         isc.ListGrid.create({
             ID: "teamMembersGrid",
             width: 800,
-            height: 300,
-            sortField: "EmployeeId",
-            dataSource: "teamMembersDS",
+            height: 200,
+            dataSource: "teamDS",
             autoFetchData: true,
             fields: [
-                { name: "TeamId", title: "TID" },
                 { name: "TeamName", title: "Team Name" },
-                { name: "EmployeeId", title: "EID" },
-                { name: "EmployeeName", title: "Employee Name" },
-                { name: "Salary", title: "Salary" }
+                { name: "Employees" },
             ],
+        });
+
+        teamDS.fetchData(null, (dsResponse, data) => {
+            data.forEach(e => {
+
+                let criteria = { TeamId: e.TeamId };
+
+                teamMembersDS.fetchData(criteria, (dsResponse, data) => {
+
+                    const employees = []
+
+                    data.forEach(e => {
+                        employees.push(e.EmployeeName)
+                    })
+
+                    let matchingRow = teamMembersGrid.getRecordIndex(data[0]);
+                    let matchingRecord = teamMembersGrid.getRecord(matchingRow);
+
+                    if (matchingRecord != null) {
+                        matchingRecord.Employees = employees;
+                    }
+
+                    let columnNumber = teamMembersGrid.getFieldNum("Employees");
+                    teamMembersGrid.refreshCell(matchingRow, columnNumber);
+                });
+            });
         });
 
     </SCRIPT>
